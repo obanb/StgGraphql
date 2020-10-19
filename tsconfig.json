@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "commonjs",
+    "outDir": "dist",
+    "baseUrl": ".",
+    "strict": true,
+    "moduleResolution": "node",
+    "lib": [
+      "esnext"
+    ],
+    "inlineSourceMap": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    // Those two are needed to overcome bugs in apollo-client
+    "strictNullChecks": false,
+    "skipLibCheck": true,
+    "paths": {
+      "@graphql-model": ["lib/index.d.ts"]
+    }
+  }
+}

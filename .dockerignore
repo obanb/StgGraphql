@@ -1,0 +1,8 @@
+.circleci/
+.idea/
+
+.npmignore
+.coveralls.yml
+.prettierignore
+.prettierrc.json
+nodemon.json

@@ -1,0 +1,13 @@
+.idea/
+.vscode/
+coverage/
+dist/
+node_modules/
+.history
+.env
+.coveralls.yml
+
+graphql.schema.json
+graphql.schema.graphql
+
+lib/

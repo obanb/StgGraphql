@@ -1,0 +1,17 @@
+.circleci/
+.idea/
+dist/
+node_modules/
+schema/
+src/
+
+.env
+.gitignore
+.npmrc
+.prettierignore
+.prettierrc.json
+Dockerfile
+
+nodemon.json
+tsconfig.json
+tslint.json

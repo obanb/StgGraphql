@@ -1,0 +1,8 @@
+
+type TestQuery {
+    """
+    test
+    """
+    test: String!
+}
+

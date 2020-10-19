@@ -1,0 +1,90 @@
+{
+  "name": "up-graphql",
+  "version": "0.1.0-alpha.1",
+  "description": "UnitetledProject graphql",
+  "author": "untitledProject",
+  "license": "ISC",
+  "homepage": "https://",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "main": "lib/index.js",
+  "scripts": {
+    "generate:merge": "node -e \"console.log(require('graphql-import').importSchema('./schema/root.graphql'))\" > graphql.schema.graphql",
+    "generate:json": "npm run generate:merge && apollo-codegen introspect-schema graphql.schema.graphql --output graphql.schema.json",
+    "generate:typescript": "mkdir lib && gql-gen && tsc --lib es2017,esnext.asynciterable --declaration true ./lib/index.ts && rimraf ./lib/index.ts",
+    "prebuild": "rimraf -- dist lib",
+    "build": "npm run generate:json && npm run generate:typescript && tsc",
+    "dev": "npm run build && nodemon src/index.ts",
+    "debug": "set NODE_ENV=DEVELOPMENT&& npm run build && node %NODE_DEBUG_OPTION% dist/index.js\"",
+    "start": "node dist/index.js",
+    "tslint": "tslint -c tslint.json -p tsconfig.json",
+    "test": "jest --verbose --colors --runInBand",
+    "tslint:check": "tslint-config-prettier-check ./tslint.json",
+    "prettier:show": "prettier --list-different \"./**/*\"",
+    "prettier:write": "prettier \"./**/*\" --write",
+    "precommit": "lint-staged && npm run tslint",
+    "postcommit": "git update-index --again",
+    "coverage": "jest --coverage --runInBand",
+    "prepare": "npm run build"
+  },
+  "lint-staged": {
+    "linters": {
+      "*.{ts,tsx}": [
+        "prettier --parser typescript --write",
+        "git add"
+      ]
+    }
+  },
+  "jest": {
+    "transform": {
+      ".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "testRegex": "(src/__tests__/.*|\\.(test|spec))\\.(ts|tsx)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ],
+    "collectCoverageFrom": [
+      "src/**/*.ts"
+    ]
+  },
+  "devDependencies": {
+    "@types/body-parser": "1.17.1",
+    "@types/express": "4.17.2",
+    "@types/express-graphql": "0.9.0",
+    "@types/graphql": "14.0.7",
+    "@types/jest": "24.0.11",
+    "@types/js-base64": "2.3.1",
+    "apollo-codegen": "0.20.2",
+    "apollo-server-express": "2.4.8",
+    "body-parser": "1.18.3",
+    "express": "4.17.1",
+    "express-graphql": "0.9.0",
+    "graphql": "14.6.0",
+    "graphql-code-generator": "0.18.2",
+    "concurrently": "4.1.0",
+    "graphql-codegen-fragment-matcher": "0.18.2",
+    "graphql-import": "0.7.1",
+    "graphql-tools": "4.0.6",
+    "husky": "1.3.1",
+    "jest": "24.4.0",
+    "js-base64": "2.5.1",
+    "nodemon": "1.18.10",
+    "prettier": "1.16.4",
+    "rimraf": "2.6.3",
+    "ts-node": "8.0.3",
+    "tslint": "5.13.1",
+    "tslint-config-prettier": "1.18.0",
+    "typescript": "3.7.5"
+  },
+  "dependencies": {
+    "dotenv": "6.2.0",
+    "graphql-codegen-typescript-template": "0.18.0",
+    "lint-staged": "8.1.4",
+    "ts-jest": "24.0.0"
+  },
+  "types": "./lib/index.d.ts"
+}

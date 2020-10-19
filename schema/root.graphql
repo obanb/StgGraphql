@@ -1,0 +1,6 @@
+#import * from "./test/index.graphql"
+
+type Query {
+    test: TestQuery!
+}
+

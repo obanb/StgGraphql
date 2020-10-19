@@ -1,0 +1,9 @@
+{
+  "verbose": true,
+  "watch": ["src/**/*.ts", "schema/**/*.graphql", "lib/index.d.ts"],
+  "ext": "ts graphql",
+  "execMap": {
+    "ts": "node --inspect=9229 ./dist/index"
+  },
+  "delay": "5000ms"
+}
